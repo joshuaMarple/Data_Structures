@@ -1,7 +1,7 @@
 all:Lab01
 
 Lab01: main.o
-	g++ -g -std=c++11 main.cpp -o Lab01 && make clean
+	g++ -g -std=c++11 main.cpp -o lab1 && make clean
 
 main.o: main.cpp
 	g++ -c -std=c++11 main.cpp

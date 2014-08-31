@@ -63,7 +63,7 @@ void linked_list::print() {
 }
 
 void linked_list::printHelper(node* l) {
-	std::cout<<l->getItem() << "\n";
+	std::cout<< l->getItem() << " ";
 	if(l->getNext() != nullptr){
 		printHelper(l->getNext());
 	}
@@ -87,4 +87,12 @@ node* linked_list::findHelper(int x, node* cur_ptr) {
 			return findHelper(x, cur_ptr->getNext());
 	} else
 		return nullptr;
+}
+
+linked_list::~linked_list() {
+	while(head_ptr != nullptr) {
+		node* tmp_ptr = head_ptr->getNext();
+		delete head_ptr;
+		head_ptr = tmp_ptr;
+	}
 }

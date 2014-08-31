@@ -17,30 +17,41 @@ int main(int argc, char* argv[]) {
         }
 	infile.close();
 
+	std::cout << "Initial file loaded: ";
 	l->print();
-	std::cout << "\n";
+	std::cout << "\n\n";
 
+	std::cout << "Inserted item: ";
 	l->insert(4);
 	l->print();
-	std::cout << "\n";
+	std::cout << "\n\n";
 
+	std::cout << "Erased item: ";
 	l->erase(1);
 	l->print();
-	std::cout << "\n";
+	std::cout << "\n\n";
 
+	std::cout << "Inserted item: ";
 	l->insert(72);
 	l->print();
-	std::cout << "\n";
+	std::cout << "\n\n";
 
+	std::cout << "Erased item: ";
 	l->erase(44);
 	l->print();
-	std::cout << "\n";
+	std::cout << "\n\n";
 
+	std::cout << "Inserted item: ";
 	l->insert(99);
 	l->print();
-	std::cout << "\n";
+	std::cout << "\n\n";
 
+	std::cout << "Erased item: ";
 	l->erase(55789);
 	l->print();
-	std::cout << "\n";
+	std::cout << "\n\n";
+
+	delete l;
+
+	return 0;
 }

@@ -1,4 +1,3 @@
-
 class linked_list
 {
 private:
@@ -9,6 +8,7 @@ private:
 	node* head_ptr;
 public:
 	linked_list();
+	~linked_list();
 	void insert(int x);
 	bool isEmpty();
 	bool erase(int x);
