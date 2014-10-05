@@ -1,0 +1,16 @@
+all:Lab05
+
+Lab05:
+	g++ -g -std=c++11 main.cpp -o lab5
+
+main.o: main.cpp
+	g++ -c -std=c++11 main.cpp
+
+# linked_list.o: linked_list.cpp linked_list.h node.o
+# 	g++ -c -std=c++11 linked_list.cpp
+
+# node.o: node.cpp node.h
+# 	g++ -c -std=c++11 node.cpp
+
+clean:
+	rm *.o
