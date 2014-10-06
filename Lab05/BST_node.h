@@ -1,3 +1,6 @@
+#ifndef _BST_NODE_H
+#define _BST_NODE_H
+
 class BST_node {
 	private:
 		BST_node* left_child;
@@ -22,3 +25,5 @@ class BST_node {
 
 		// get_parent();
 };
+
+#endif

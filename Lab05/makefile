@@ -1,16 +1,19 @@
 all:Lab05
 
-Lab05:
-	g++ -g -std=c++11 main.cpp -o lab5
+Lab05: main.o Queue.o BST_node.o Binary_search_tree.o
+	g++ Queue.o BST_node.o Binary_search_tree.o main.o -o Lab5
 
-main.o: main.cpp
+main.o: main.cpp 
 	g++ -c -std=c++11 main.cpp
 
-# linked_list.o: linked_list.cpp linked_list.h node.o
-# 	g++ -c -std=c++11 linked_list.cpp
+Queue.o: Queue.cpp
+	g++ -c -g -std=c++11 Queue.cpp
 
-# node.o: node.cpp node.h
-# 	g++ -c -std=c++11 node.cpp
+BST_node.o: BST_node.cpp
+	g++ -c -g -std=c++11 BST_node.cpp
+
+Binary_search_tree.o: Binary_search_tree.cpp
+	g++ -c -g -std=c++11 Binary_search_tree.cpp
 
 clean:
 	rm *.o

@@ -1,5 +1,5 @@
 #include "Binary_search_tree.h"
-#include <iostream>
+
 
 Binary_search_tree::Binary_search_tree() {
 	root = nullptr;
@@ -86,14 +86,12 @@ void Binary_search_tree::remove_helper(int x, BST_node* t, BST_node* p) {
 		} else {
 			remover(t, p);
 		}
-	} else{
-		// return t;
 	}
 }
 
 void Binary_search_tree::remover(BST_node* t, BST_node* p) {
-	if(t->get_right_child() == nullptr) {
-		if (t->get_left_child() == nullptr) {
+	if (t->get_left_child() == nullptr) {
+		if (t->get_right_child() == nullptr) {
 			if (t->get_data() < p->get_data()) {
 				delete t;
 				p->set_left_child(nullptr);
@@ -102,26 +100,26 @@ void Binary_search_tree::remover(BST_node* t, BST_node* p) {
 				p->set_right_child(nullptr);
 			}
 		} else {
-			t->set_data(get_min(t)->get_data());
-			remove_helper(get_min(t)->get_data(), t->get_left_child(), t);
-			remove_helper(get_min(t)->get_data(), t->get_right_child(), t);
+			t->set_data(get_min(t->get_right_child())->get_data());
+			remove_helper(get_min(t->get_right_child())->get_data(), t->get_left_child(), t);
+			remove_helper(get_min(t->get_right_child())->get_data(), t->get_right_child(), t);
 		}
 	} else {
-		t->set_data(get_max(t)->get_data());
-		remove_helper(get_max(t)->get_data(), t->get_left_child(), t);
-		remove_helper(get_max(t)->get_data(), t->get_right_child(), t);
+		t->set_data(get_max(t->get_left_child())->get_data());
+		remove_helper(get_max(t->get_left_child())->get_data(), t->get_left_child(), t);
+		remove_helper(get_max(t->get_left_child())->get_data(), t->get_right_child(), t);
 	}
 }
 
 BST_node* Binary_search_tree::get_min(BST_node* t) {
-	if(t->get_left_child() != nullptr)
+	if (t->get_left_child() != nullptr)
 		get_min(t->get_left_child());
 	else
 		return t;
 }
 
 BST_node* Binary_search_tree::get_max(BST_node* t) {
-	if(t->get_right_child() != nullptr)
+	if (t->get_right_child() != nullptr)
 		get_max(t->get_right_child());
 	else
 		return t;
@@ -133,4 +131,17 @@ void Binary_search_tree::delete_min() {
 
 void Binary_search_tree::delete_max() {
 	remove(get_max(root)->get_data());
+}
+
+void Binary_search_tree::levelorder() {
+	Queue* que = new Queue();
+	que->push(root);
+	while(!que->empty()) {
+		std::cout << que->top()->get_data() << " ";
+		if(que->top()->get_left_child() != nullptr)
+			que->push(que->top()->get_left_child());
+		if(que->top()->get_right_child() != nullptr)
+			que->push(que->top()->get_right_child());
+		que->pop();
+	}
 }

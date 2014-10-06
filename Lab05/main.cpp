@@ -1,4 +1,4 @@
-#include "Binary_search_tree.cpp"
+#include "Binary_search_tree.h"
 #include <fstream>
 #include <iostream>
 #include <sstream>
@@ -43,8 +43,8 @@ int main(int argc, char* argv[]){
 			tree->preorder();
 		}else if(input == 6){
 			tree->inorder();
-		// }else if(input == 7){
-		// 	tree->levelorder();
+		}else if(input == 7){
+			tree->levelorder();
 		}
 		std::cout << "\n\n----------------------\n" << "1- insert\n" << "2- remove\n" << "3- delete_min\n" << "4- delete_max\n"
 			<< "5- preorder\n" << "6- inorder\n" << "7- levelorder\n" << "8- exit\n";

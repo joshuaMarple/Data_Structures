@@ -1,4 +1,9 @@
-#include "BST_node.cpp"
+
+#ifndef _BINARY_SEARCH_TREE_H
+#define _BINARY_SEARCH_TREE_H
+#include "Queue.h"
+#include "BST_node.h"
+#include <iostream>
 
 class Binary_search_tree {
 
@@ -26,3 +31,5 @@ class Binary_search_tree {
 		void inorder();
 		void levelorder();
 };
+
+#endif
