@@ -1,8 +1,5 @@
-#include <cstddef>
+#include "node.cpp"
 #include "linked_list.h"
-#include "node.h"
-#include <iostream>
-
 linked_list::linked_list() {
 	head_ptr = nullptr;	
 	// tail_ptr = nullptr;
@@ -35,13 +32,15 @@ bool linked_list::isEmpty() {
 }
 
 bool linked_list::erase(int x) {
-	if(head_ptr->getItem() != x)
-		return eraseHelper(x,head_ptr->getNext(), head_ptr);
-	else {
-		node* tmp_ptr = head_ptr;
-		head_ptr = head_ptr->getNext();
-		delete tmp_ptr;
-		return false;
+	if(head_ptr != nullptr && find(x) != nullptr){
+		if(head_ptr->getItem() != x)
+			return eraseHelper(x,head_ptr->getNext(), head_ptr);
+		else {
+			node* tmp_ptr = head_ptr;
+			head_ptr = head_ptr->getNext();
+			delete tmp_ptr;
+			return false;
+		}
 	}
 }
 
@@ -59,7 +58,9 @@ bool linked_list::eraseHelper(int x, node* l, node* prev) {
 }
 
 void linked_list::print() {
-	printHelper(head_ptr);
+	if (head_ptr != nullptr){
+		printHelper(head_ptr);
+	} 
 }
 
 void linked_list::printHelper(node* l) {

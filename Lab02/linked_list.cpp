@@ -35,7 +35,6 @@ bool linked_list::isEmpty() {
 }
 
 bool linked_list::erase(int x) {
-<<<<<<< HEAD
 	if(head_ptr != nullptr && find(x) != nullptr){
 		if(head_ptr->getItem() != x)
 			return eraseHelper(x,head_ptr->getNext(), head_ptr);
@@ -45,15 +44,6 @@ bool linked_list::erase(int x) {
 			delete tmp_ptr;
 			return false;
 		}
-=======
-	if(head_ptr->getItem() != x)
-		return eraseHelper(x,head_ptr->getNext(), head_ptr);
-	else {
-		node* tmp_ptr = head_ptr;
-		head_ptr = head_ptr->getNext();
-		delete tmp_ptr;
-		return false;
->>>>>>> d1bd6b267bf3c750e0ee74dd107f7e5bc62b395e
 	}
 }
 
@@ -71,13 +61,9 @@ bool linked_list::eraseHelper(int x, node* l, node* prev) {
 }
 
 void linked_list::print() {
-<<<<<<< HEAD
 	if (head_ptr != nullptr){
 		printHelper(head_ptr);
 	} 
-=======
-	printHelper(head_ptr);
->>>>>>> d1bd6b267bf3c750e0ee74dd107f7e5bc62b395e
 }
 
 void linked_list::printHelper(node* l) {

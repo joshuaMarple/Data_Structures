@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 all:Lab02
 
 Lab02: main.o

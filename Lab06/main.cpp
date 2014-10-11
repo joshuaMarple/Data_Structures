@@ -1,4 +1,4 @@
-#include "Binary_search_tree.h"
+#include "min5heap.h"
 #include <fstream>
 #include <iostream>
 #include <sstream>
@@ -6,7 +6,7 @@
 
 int main(int argc, char* argv[]){
 	
-	Binary_search_tree* tree = new Binary_search_tree();
+	min5heap* heap = new min5heap();
 	
     std::ifstream infile;
     infile.open ("data.txt");
@@ -16,7 +16,7 @@ int main(int argc, char* argv[]){
         std::stringstream  lineStream(line);
         int value;
         while(lineStream >> value){
-        	tree->insert(value);
+        	heap->insert(value);
         }
     }
     infile.close();
@@ -27,32 +27,30 @@ int main(int argc, char* argv[]){
 	"2- remove\n" <<
 	"3- deletemin\n" << 
 	"4- deletemax\n" << 
-	"5- preorder\n" <<
-	"6- inorder\n" <<
-	"7- levelorder\n" << 
-	"8- exit\n";
+	"5- levelorder\n" << 
+	"6- exit\n";
 	int input;
 	std::cin >> input;
 	
-	while(input != 8){
-		if(input == 1){
+	while(input != 6){
+			if(input == 1){
 			std::cout << "Which number would you like to insert?\n";
 			std::cin >> input;
-			tree->insert(input);
+			heap->insert(input);
 		}else if(input == 2){
 			std::cout << "Which number would you like to remove\n";
 			std::cin >> input;
-			tree->remove(input);
+			heap->remove(input);
 		}else if(input == 3){
-			tree->delete_min();
+			heap->delete_min();
 		}else if(input == 4){
-			tree->delete_max();
+			heap->delete_max();
 		}else if(input == 5){
-			tree->preorder();
+			heap->preorder();
 		}else if(input == 6){
-			tree->inorder();
+			heap->inorder();
 		}else if(input == 7){
-			tree->levelorder();
+			heap->levelorder();
 		}
 		std::cout << "..........................................................\n" <<
 		"Please choose one of the following commands:\n" <<
@@ -60,10 +58,8 @@ int main(int argc, char* argv[]){
 		"2- remove\n" <<
 		"3- deletemin\n" << 
 		"4- deletemax\n" << 
-		"5- preorder\n" <<
-		"6- inorder\n" <<
-		"7- levelorder\n" << 
-		"8- exit\n";
+		"5- levelorder\n" << 
+		"6- exit\n";
 		std::cin >> input;
 	}
 		

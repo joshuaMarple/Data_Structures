@@ -1,6 +1,7 @@
 #ifndef _NODE
 #define _NODE
 
+#include <cstddef>
 class node
 {
 private: 

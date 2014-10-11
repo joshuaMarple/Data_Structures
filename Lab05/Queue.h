@@ -5,16 +5,16 @@
 
 class Queue{
 	private:
-		BST_node** arr = new BST_node*[10];
-		int size;
-		int count;
+		BST_node** arr = new BST_node*[20];
+		int size = 20;
+		int count = 0;
 	public:
 		Queue();
 		~Queue();
 		void push(BST_node* n);
 		BST_node* pop();
-		BST_node* top();
-		bool empty();
+		BST_node* peek();
+		bool is_empty();
 };
 
 #endif

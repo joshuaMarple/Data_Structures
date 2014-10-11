@@ -1,15 +1,14 @@
 #include "Queue.h"
 
 Queue::Queue(){
-	size = 10;
-	count = 0;
+
 }
 
 Queue::~Queue(){
 	
 }
 
-void Queue::push(BST_node* n){
+void Queue::push(BST_node* t){
 	if(count == size-1){
 		BST_node** temp = new BST_node*[size*2];
 		for(int i = 0; i < size; i++){
@@ -18,7 +17,7 @@ void Queue::push(BST_node* n){
 		arr = temp;
 		size = size*2;
 	}
-	arr[count] = n;
+	arr[count] = t;
 	count++;
 }
 

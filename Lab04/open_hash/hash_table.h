@@ -1,9 +1,19 @@
+#include <cstddef>
+#include <iostream>
+#include "linked_list.cpp"
+// #include "hash_table.cpp"
+
 class hash_table
 {
 private:
 	int size;
-	linked_list* head = new linked_list[size];
+	linked_list* main_list = nullptr;
 public:
-	linked_list
-
-}
+	hash_table(int i_size);
+	~hash_table();
+	void insert(int x);
+	bool remove(int x);
+	void print();
+	int hash(int x);
+	bool find(int x);
+};
