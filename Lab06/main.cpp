@@ -6,21 +6,8 @@
 
 int main(int argc, char* argv[]){
 	
-	min5heap* heap = new min5heap();
-	
-    std::ifstream infile;
-    infile.open ("data.txt");
-    int i = 0;
-    std::string line;
-    while(std::getline(infile, line)){
-        std::stringstream  lineStream(line);
-        int value;
-        while(lineStream >> value){
-        	heap->insert(value);
-        }
-    }
-    infile.close();
-	
+	min5heap* heap = new min5heap("data.txt");
+
 	std::cout << "..........................................................\n" <<
 	"Please choose one of the following commands:\n" <<
 	"1- insert\n" << 
@@ -46,11 +33,7 @@ int main(int argc, char* argv[]){
 		}else if(input == 4){
 			heap->delete_max();
 		}else if(input == 5){
-			heap->preorder();
-		}else if(input == 6){
-			heap->inorder();
-		}else if(input == 7){
-			heap->levelorder();
+			heap->level_order();
 		}
 		std::cout << "..........................................................\n" <<
 		"Please choose one of the following commands:\n" <<

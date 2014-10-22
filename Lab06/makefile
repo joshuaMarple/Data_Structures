@@ -1,7 +1,7 @@
 all:Lab06
 
 Lab06: main.o min5heap.o
-	g++ min5heap.o main.o -o Lab5
+	g++ min5heap.o main.o -o Lab6
 
 main.o: main.cpp 
 	g++ -c -std=c++11 main.cpp

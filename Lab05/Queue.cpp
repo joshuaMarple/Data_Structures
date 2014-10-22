@@ -30,11 +30,11 @@ BST_node* Queue::pop(){
 	return temp;
 }
 
-BST_node* Queue::top(){
+BST_node* Queue::peek(){
 	return arr[0];
 }
 
-bool Queue::empty(){
+bool Queue::is_empty(){
 	if(count != 0){
 		return false;
 	}

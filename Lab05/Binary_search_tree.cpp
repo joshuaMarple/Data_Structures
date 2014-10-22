@@ -136,12 +136,12 @@ void Binary_search_tree::delete_max() {
 void Binary_search_tree::levelorder() {
 	Queue* que = new Queue();
 	que->push(root);
-	while(!que->empty()) {
-		std::cout << que->top()->get_data() << " ";
-		if(que->top()->get_left_child() != nullptr)
-			que->push(que->top()->get_left_child());
-		if(que->top()->get_right_child() != nullptr)
-			que->push(que->top()->get_right_child());
+	while(!que->is_empty()) {
+		std::cout << que->peek()->get_data() << " ";
+		if(que->peek()->get_left_child() != nullptr)
+			que->push(que->peek()->get_left_child());
+		if(que->peek()->get_right_child() != nullptr)
+			que->push(que->peek()->get_right_child());
 		que->pop();
 	}
 }
