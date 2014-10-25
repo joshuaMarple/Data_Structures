@@ -7,7 +7,7 @@ Lab07: main.o
 	g++ -g main.o  -o Lab7
 
 main.o: main.cpp 
-	g++ -g -c -std=c++11 main.cpp
+	g++ -g -c -std=c++11 main.cpp 
 
 # min5heap.o: min5heap.cpp
 # 	g++ -c -std=c++11 min5heap.cpp

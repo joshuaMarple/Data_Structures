@@ -91,25 +91,85 @@ void Binary_search_tree::remove_helper(int x, BST_node* t, BST_node* p) {
 	}
 }
 
+// void Binary_search_tree::remover(BST_node* t, BST_node* p) {
+// 	if (t->get_right_child() == nullptr) {
+// 		if (t->get_left_child() == nullptr) {
+// 			if (p != nullptr) {
+// 				if (t->get_data() < p->get_data()) {
+// 				p->set_left_child(nullptr);
+// 				delete t;
+// 				} else { 
+// 					p->set_right_child(nullptr);
+// 					delete t;
+// 				}
+// 			} else {
+// 				delete root;
+// 				root = nullptr;
+// 			}
+			
+// 		} else {
+// 			t->set_data(get_max(t->get_left_child())->get_data());
+// 			remove_helper(get_max(t->get_left_child())->get_data(), t->get_left_child(), t);
+// 			// remove_helper(get_max(t->get_left_child())->get_data(), t->get_right_child(), t);
+// 		}	
+// 	} else {
+// 		t->set_data(get_min(t->get_right_child())->get_data());
+// 		// remove_helper(get_min(t->get_right_child())->get_data(), t->get_left_child(), t);
+// 		remove_helper(get_min(t->get_right_child())->get_data(), t->get_right_child(), t);
+// 	}	
+// }
+
 void Binary_search_tree::remover(BST_node* t, BST_node* p) {
-	if (t->get_left_child() == nullptr) {
-		if (t->get_right_child() == nullptr) {
-			if (t->get_data() < p->get_data()) {
-				delete t;
+	if(t->get_right_child() == nullptr) {
+
+		if(t->get_left_child() == nullptr) {
+
+			// case with no children
+
+			if(p->get_left_child()->get_data() == t->get_data()){
 				p->set_left_child(nullptr);
-			} else { 
 				delete t;
+			} else {
 				p->set_right_child(nullptr);
+				delete t;
 			}
+
 		} else {
-			t->set_data(get_min(t->get_right_child())->get_data());
-			remove_helper(get_min(t->get_right_child())->get_data(), t->get_left_child(), t);
-			remove_helper(get_min(t->get_right_child())->get_data(), t->get_right_child(), t);
+
+			// case with just left child
+			if(p->get_left_child()->get_data() == t->get_data()){
+				p->set_left_child(t->get_left_child());
+				delete t;
+			} else {
+				p->set_right_child(t->get_left_child());
+				delete t;
+			}
+
 		}
 	} else {
-		t->set_data(get_max(t->get_left_child())->get_data());
-		remove_helper(get_max(t->get_left_child())->get_data(), t->get_left_child(), t);
-		remove_helper(get_max(t->get_left_child())->get_data(), t->get_right_child(), t);
+		if(t->get_left_child() == nullptr) {
+
+			// case with just right child
+
+			if(p->get_left_child()->get_data() == t->get_data()){
+				p->set_left_child(t->get_right_child());
+				delete t;
+			} else {
+				p->set_right_child(t->get_right_child());
+				delete t;
+			}
+
+		} else {
+
+			// case with two children
+			// if(p->get_left_child()->get_data == t->get_data()){
+			// 	p->set_left_child(t->get_right_child());
+			// } else {
+			// 	p->set_right_child(t->get_right_child());
+			// }
+			t->set_data(get_max(t->get_left_child())->get_data());
+			remove_helper(get_max(t->get_left_child())->get_data(), t->get_left_child(), t);
+		}
 	}
 }
 
@@ -121,6 +181,7 @@ BST_node* Binary_search_tree::get_min(BST_node* t) {
 }
 
 BST_node* Binary_search_tree::get_max(BST_node* t) {
+	std::cout << t->get_data() << std::endl;
 	if (t->get_right_child() != nullptr)
 		get_max(t->get_right_child());
 	else

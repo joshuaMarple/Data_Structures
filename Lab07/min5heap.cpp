@@ -71,18 +71,24 @@ bool min5heap::insert_helper(int x, int parent, int cur_loc) {
 }
 
 void min5heap::remove(int x) {
+	// std::cout << num_nodes << std::endl;
 	for (int i = 0; i < num_nodes; i++) {
 		if (heap[i] == x) {
+
 			if (i != num_nodes - 1) {
 				heap[i] = heap[num_nodes - 1];
 				heap[num_nodes-1] = INT_MAX;
-				for (int i = num_nodes; i >= 0; i--) {
-					heapify(i);
-				}
+				// std::cout << heap[i] << std::endl;
+				// std::cout << num_nodes << std::endl;
+				// std::cout << heap[num_nodes - 1] << std::endl;
+				num_nodes--;
+				// for (int j = num_nodes; j >= 0; j--) {
+				// 	heapify(i);
+				// }
 			} else {
 				heap[num_nodes-1] = INT_MAX;
+				num_nodes--;
 			}
-			num_nodes--;
 			remove(x);
 			break;
 		}
