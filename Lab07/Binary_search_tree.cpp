@@ -126,23 +126,23 @@ void Binary_search_tree::remover(BST_node* t, BST_node* p) {
 
 			// case with no children
 
-			if(p->get_left_child()->get_data() == t->get_data()){
+			if(p->get_left_child() == t){
 				p->set_left_child(nullptr);
-				delete t;
+				// delete t;
 			} else {
 				p->set_right_child(nullptr);
-				delete t;
+				// delete t;
 			}
 
 		} else {
 
 			// case with just left child
-			if(p->get_left_child()->get_data() == t->get_data()){
+			if(p->get_left_child() == t){
 				p->set_left_child(t->get_left_child());
-				delete t;
+				// delete t;
 			} else {
 				p->set_right_child(t->get_left_child());
-				delete t;
+				// delete t;
 			}
 
 		}
@@ -151,12 +151,12 @@ void Binary_search_tree::remover(BST_node* t, BST_node* p) {
 
 			// case with just right child
 
-			if(p->get_left_child()->get_data() == t->get_data()){
+			if(p->get_left_child() == t){
 				p->set_left_child(t->get_right_child());
-				delete t;
+				// delete t;
 			} else {
 				p->set_right_child(t->get_right_child());
-				delete t;
+				// delete t;
 			}
 
 		} else {
@@ -177,6 +177,7 @@ BST_node* Binary_search_tree::get_min(BST_node* t) {
 	if (t->get_left_child() != nullptr)
 		get_min(t->get_left_child());
 	else
+		std::cout << t->get_data() << std::endl;
 		return t;
 }
 

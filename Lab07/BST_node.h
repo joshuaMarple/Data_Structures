@@ -5,7 +5,7 @@ class BST_node {
 	private:
 		BST_node* left_child;
 		BST_node* right_child;
-		int data;
+		int data = -1;
 		bool empty = true;
 	public: 
 		BST_node();

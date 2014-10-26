@@ -6,8 +6,8 @@ BST_node::BST_node() {
 }
 
 BST_node::~BST_node() {
-	delete left_child;
-	delete right_child;
+	left_child = nullptr;
+	right_child = nullptr;
 	data = -1;
 }
 

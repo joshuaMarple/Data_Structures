@@ -68,10 +68,10 @@ int main(int argc, char* argv[]){
 		std::cout << "min5heap Time: " << m5h_avg_time/5 << std::endl;
 	}
 
-	n = 5;
+	n = 50000;
 	srand(1);
 	float test = 0.8;
-	float values[50];
+	float values[n/10];
 	// std::cout << "about to gen vals\n";
 	// for (int i = 0; i < 50; i++) {
 	// 	// values[i] = dis(gen);
@@ -101,7 +101,7 @@ int main(int argc, char* argv[]){
 	delete bst;
 	bst = new Binary_search_tree();
 	// timer.start();
-	for(int k = 0; k< n; k++) {
+	for(int k = 0; k < n; k++) {
 		bst->insert(rand_values[k]);
 	}
 	// BST_time[i][j] = timer.stop();
@@ -116,11 +116,11 @@ int main(int argc, char* argv[]){
 
 	// int rand_values[n];
 
-	for(int k = 0; k < 50; k++) {
+	for(int k = 0; k < n/10; k++) {
 		values[k] = rand() % 100;
 	}
 
-	for (int j = 0; j < 50; j++) {
+	for (int j = 0; j < n/10; j++) {
 		if (values[j] < 25) {
 			// std::cout << values[j] << std::endl;
 			std::cout << "less than 25" << std::endl;
@@ -139,7 +139,7 @@ int main(int argc, char* argv[]){
 	
 	std::cout << "Finished bst operations" << std::endl;
 
-	for (int j = 0; j < 50; j++) {
+	for (int j = 0; j < n/10; j++) {
 		if (values[j] < 25) {
 			// std::cout << values[j] << std::endl;
 			// std::cout << "less than 25" << std::endl;
