@@ -1,25 +1,25 @@
 all:Lab08
 
-# Lab07: main.o Queue.o Binary_search_tree.o min5heap.o
-# 	g++ Queue.o BST_node.o Binary_search_tree.o min5heap.o main.o -o Lab5
-
-Lab08: main.o
-	g++ -g main.o  -o Lab8
+Lab08: main.o skew_node.o skew_heap.o leftist_node.o leftist_heap.o leftist_queue
+	g++ skew_node.o skew_heap.o leftist_node.o leftist_heap.o leftist_queue.o main.o -o Lab08
 
 main.o: main.cpp 
-	g++ -g -c -std=c++11 main.cpp 
+	g++ -c -g -std=c++11 main.cpp
 
-# min5heap.o: min5heap.cpp
-# 	g++ -c -std=c++11 min5heap.cpp
+leftist_queue.o: ./Leftist/leftist_queue.cpp
+	g++ -c -g -std=c++11 ./Leftist/leftist_queue.cpp
 
-# Queue.o: Queue.cpp
-# 	g++ -c -g -std=c++11 Queue.cpp
+skew_node.o: ./Skew/skew_node.cpp
+	g++ -c -g -std=c++11 ./Skew/skew_node.cpp
 
-# BST_node.o: BST_node.cpp
-# 	g++ -c -g -std=c++11 BST_node.cpp
+skew_heap.o: ./Skew/skew_heap.cpp
+	g++ -c -g -std=c++11 ./Skew/skew_heap.cpp
 
-# Binary_search_tree.o: Binary_search_tree.cpp
-# 	g++ -c -g -std=c++11 Binary_search_tree.cpp
+leftist_node.o: ./Leftist/leftist_node.cpp
+	g++ -c -g -std=c++11 ./Leftist/leftist_node.cpp
+
+leftist_heap.o: ./Leftist/leftist_heap.cpp
+	g++ -c -g -std=c++11 ./Leftist/leftist_heap.cpp
 
 clean:
-	rm *.o ./Lab8
+	rm *.o

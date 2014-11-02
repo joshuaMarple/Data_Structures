@@ -1,20 +1,20 @@
 #include <iostream>
 #include <math.h>
-#include "Binary_search_tree.cpp"
-#include "min5heap.cpp"
+#include "./Leftist/leftist_heap.h"
+#include "./Skew/skew_heap.h"
 #include "Timer.cpp"
-#include "Queue.h"
-#include "BST_node.h"
+#include "./Leftist/leftist_queue.h"
+#include "./Skew/skew_queue.h"
 
 int main(int argc, char* argv[]){
 	Timer timer; 
-	Binary_search_tree* bst = new Binary_search_tree();
-	min5heap* m5h = new min5heap();
+	leftist_heap* leftist = new leftist_heap();
+	skew_heap* skew = new skew_heap();
 
 	int n = 50000;
 
-	double BST_time[4][5];
-	double min5heap_time[4][5];
+	double leftist_time[4][5];
+	double skew_heap_time[4][5];
 
 	for(int i = 0; i < 4; i++){
 
@@ -26,20 +26,22 @@ int main(int argc, char* argv[]){
 				rand_values[k] = rand();
 			}
 
-			delete bst;
-			bst = new Binary_search_tree();
+			delete leftist;
+			leftist = new leftist_heap();
 			timer.start();
 			for(int k = 0; k< n; k++) {
-				bst->insert(rand_values[k]);
+				leftist->insert(rand_values[k]);
 			}
-			BST_time[i][j] = timer.stop();
-			std::cout << "Finished BST insert, i = " << i << std::endl;
+			leftist_time[i][j] = timer.stop();
+			std::cout << "Finished leftist insert, i = " << i << std::endl;
 
-			delete m5h;
+			delete skew;
 			timer.start();
-			m5h = new min5heap(rand_values, n);
-			min5heap_time[i][j] = timer.stop();
-			std::cout << "Finished min5heap insert, i = " << i << std::endl;
+			for(int k = 0; k< n; k++) {
+				skew->insert(rand_values[k]);
+			}
+			skew_heap_time[i][j] = timer.stop();
+			std::cout << "Finished skew_heap insert, i = " << i << std::endl;
 
 		}
 
@@ -50,14 +52,14 @@ int main(int argc, char* argv[]){
 	std::cout << "<<<<<<<<<<<<<<<<<<<<<<<<\n";
 
 	for(int i = 0; i < 4; i++) {
-		double bst_avg_time = 0;
-		double m5h_avg_time = 0;
+		double leftist_avg_time = 0;
+		double skew_avg_time = 0;
 		for (int j = 0; j < 5; j++) {
-			bst_avg_time += BST_time[i][j];
-			m5h_avg_time += min5heap_time[i][j];
+			leftist_avg_time += leftist_time[i][j];
+			skew_avg_time += skew_heap_time[i][j];
 		}
-		std::cout << "BST Avg Time: " << bst_avg_time/5 << std::endl;
-		std::cout << "min5heap Time: " << m5h_avg_time/5 << std::endl;
+		std::cout << "leftist Avg Time: " << leftist_avg_time/5 << std::endl;
+		std::cout << "skew_heap Time: " << skew_avg_time/5 << std::endl;
 	}
 
 	n = 50000;
@@ -71,15 +73,18 @@ int main(int argc, char* argv[]){
 		rand_values[k] = rand();
 	}
 
-	delete bst;
-	bst = new Binary_search_tree();
+	delete leftist;
+	leftist = new leftist_heap();
 
 	for(int k = 0; k < n; k++) {
-		bst->insert(rand_values[k]);
+		leftist->insert(rand_values[k]);
 	}
 
-	delete m5h;
-	m5h = new min5heap(rand_values, n);
+	delete skew;
+	skew = new skew_heap();
+	for(int k = 0; k< n; k++) {
+		skew->insert(rand_values[k]);
+	}
 	
 	for(int k = 0; k < n/10; k++) {
 		values[k] = rand() % 2;
@@ -87,22 +92,22 @@ int main(int argc, char* argv[]){
 
 	for (int j = 0; j < n/10; j++) {
 		if (values[j] == 0) {
-			bst->delete_min();
+			leftist->deletemin();
 		} else {
-			bst->insert(rand());
+			leftist->insert(rand());
 		}
 	}
 	
-	std::cout << "Finished bst operations" << std::endl;
+	std::cout << "Finished leftist operations" << std::endl;
 
 	for (int j = 0; j < n/10; j++) {
 		if (values[j] == 0) {
-			m5h->delete_min();
+			skew->deletemin();
 		} else {
-			m5h->insert(rand());
+			skew->insert(rand());
 		}
 	}
 
-	std::cout << "Finished m5h operations" << std::endl;
+	std::cout << "Finished skew operations" << std::endl;
 
 }

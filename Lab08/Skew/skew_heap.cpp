@@ -1,13 +1,13 @@
-#include "leftist_heap.h"
-#include "leftist_node.h"
+#include "skew_heap.h"
+#include "skew_node.h"
 #include <string>
 
-leftist_heap::leftist_heap() {
-	root = new leftist_node();
+skew_heap::skew_heap() {
+	root = new skew_node();
 }
 
-leftist_heap::leftist_heap(std::string file) {
-	root = new leftist_node();
+skew_heap::skew_heap(std::string file) {
+	root = new skew_node();
 	std::ifstream infile;
 	infile.open ("data.txt");
     std::string line;
@@ -21,21 +21,21 @@ leftist_heap::leftist_heap(std::string file) {
     infile.close();
 }
 
-void leftist_heap::insert(int x) {
+void skew_heap::insert(int x) {
 	if (root == nullptr) {
-		leftist_node* n_node = new leftist_node(x);
+		skew_node* n_node = new skew_node(x);
 		root = n_node;
 		return;
 	}
 	if (root->is_empty()) 
 		root->set_data(x);
 	else {
-		leftist_node* n_node = new leftist_node(x);
+		skew_node* n_node = new skew_node(x);
 		insert(n_node);
 	}
 }
 
-void leftist_heap::insert(leftist_node* t) {
+void skew_heap::insert(skew_node* t) {
 	if (root->is_empty()) {
 		root = t;
 	} else {
@@ -43,7 +43,7 @@ void leftist_heap::insert(leftist_node* t) {
 	}
 }
 
-leftist_node* leftist_heap::insert_helper(leftist_node* a, leftist_node* b) {
+skew_node* skew_heap::insert_helper(skew_node* a, skew_node* b) {
 	if (a == nullptr) {
 		return b;
 	} else if (b == nullptr) {
@@ -59,29 +59,23 @@ leftist_node* leftist_heap::insert_helper(leftist_node* a, leftist_node* b) {
 			}
 		}
 	}
-
-	if(a->get_left_child() == nullptr) {
-		a->swap();
-	} else {
-		if (a->get_left_child()->rank() < a->get_right_child()->rank()) {
-			a->swap();
-		}
-	}
+	
+	a->swap();
 	return a;
 
 }
 
-void leftist_heap::deletemin() {
+void skew_heap::deletemin() {
 	if (root == nullptr)
 		return;
 	root = insert_helper(root->get_right_child(), root->get_left_child());
 }
 
-void leftist_heap::preorder() {
+void skew_heap::preorder() {
 	preorder_helper(root);
 }
 
-void leftist_heap::preorder_helper(leftist_node* t) {
+void skew_heap::preorder_helper(skew_node* t) {
 	if (t != nullptr) {
 		std::cout << t->get_data() << " ";
 		preorder_helper(t->get_left_child());
@@ -89,11 +83,11 @@ void leftist_heap::preorder_helper(leftist_node* t) {
 	}
 }
 
-void leftist_heap::inorder() {
+void skew_heap::inorder() {
 	inorder_helper(root);
 }
 
-void leftist_heap::inorder_helper(leftist_node* t) {
+void skew_heap::inorder_helper(skew_node* t) {
 	if (t != nullptr) {
 		preorder_helper(t->get_left_child());
 		std::cout << t->get_data() << " ";
@@ -101,10 +95,10 @@ void leftist_heap::inorder_helper(leftist_node* t) {
 	}	
 }
 
-void leftist_heap::levelorder() {
+void skew_heap::levelorder() {
 	if (root == nullptr)
 		return;
-	leftist_queue* que = new leftist_queue();
+	skew_queue* que = new skew_queue();
 	que->push(root);
 	while(!que->is_empty()) {
 		std::cout << que->peek()->get_data() << " ";
