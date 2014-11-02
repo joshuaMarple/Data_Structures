@@ -8,7 +8,7 @@ class skew_node {
 		skew_node* right_child;
 		int data = -1;
 		bool empty = true;
-		// int rank = 0;
+		int cur_rank = 0;
 
 	public:
 		skew_node();
@@ -22,7 +22,7 @@ class skew_node {
 		int get_data();
 		int rank();
 		void set_data(int x);
-
+		void calc_rank();
 		void swap();
 
 };

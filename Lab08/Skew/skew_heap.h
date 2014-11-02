@@ -13,7 +13,7 @@ class skew_heap {
 
 	private:
 		skew_node* root;
-		
+		int cur_rank = 0;
 		skew_node* insert_helper(skew_node* a, skew_node* b);
 		void preorder_helper(skew_node* t);
 		void inorder_helper(skew_node* t);

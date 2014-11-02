@@ -1,13 +1,16 @@
 all:Lab08
 
-Lab08: main.o skew_node.o skew_heap.o leftist_node.o leftist_heap.o leftist_queue
-	g++ skew_node.o skew_heap.o leftist_node.o leftist_heap.o leftist_queue.o main.o -o Lab08
+Lab08: main.o skew_node.o skew_heap.o leftist_node.o leftist_heap.o leftist_queue.o skew_queue.o
+	g++ skew_node.o skew_heap.o leftist_node.o leftist_heap.o leftist_queue.o skew_queue.o main.o -o Lab08
 
 main.o: main.cpp 
 	g++ -c -g -std=c++11 main.cpp
 
 leftist_queue.o: ./Leftist/leftist_queue.cpp
 	g++ -c -g -std=c++11 ./Leftist/leftist_queue.cpp
+
+skew_queue.o: ./Skew/skew_queue.cpp
+	g++ -c -g -std=c++11 ./Skew/skew_queue.cpp
 
 skew_node.o: ./Skew/skew_node.cpp
 	g++ -c -g -std=c++11 ./Skew/skew_node.cpp

@@ -13,7 +13,7 @@ class leftist_heap {
 
 	private:
 		leftist_node* root;
-		
+		int rank;
 		leftist_node* insert_helper(leftist_node* a, leftist_node* b);
 		void preorder_helper(leftist_node* t);
 		void inorder_helper(leftist_node* t);

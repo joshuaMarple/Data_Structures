@@ -21,6 +21,10 @@ leftist_heap::leftist_heap(std::string file) {
     infile.close();
 }
 
+leftist_heap::~leftist_heap() {
+	delete root;
+}
+
 void leftist_heap::insert(int x) {
 	if (root == nullptr) {
 		leftist_node* n_node = new leftist_node(x);
