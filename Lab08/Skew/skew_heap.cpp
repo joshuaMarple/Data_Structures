@@ -21,6 +21,10 @@ skew_heap::skew_heap(std::string file) {
     infile.close();
 }
 
+skew_heap::~skew_heap() {
+	delete root;
+}
+
 void skew_heap::insert(int x) {
 	if (root == nullptr) {
 		skew_node* n_node = new skew_node(x);

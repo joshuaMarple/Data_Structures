@@ -8,7 +8,8 @@ class leftist_node {
 		leftist_node* right_child;
 		int data = -1;
 		bool empty = true;
-		// int rank = 0;
+		int cur_rank = 0;
+		void calc_rank();
 
 	public:
 		leftist_node();

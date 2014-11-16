@@ -36,6 +36,7 @@ int main(int argc, char* argv[]){
 			std::cout << "Finished leftist insert, i = " << i << std::endl;
 
 			delete skew;
+			skew = new skew_heap();
 			timer.start();
 			for(int k = 0; k< n; k++) {
 				skew->insert(rand_values[k]);
