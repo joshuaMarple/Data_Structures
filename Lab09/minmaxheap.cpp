@@ -23,7 +23,7 @@ minmaxheap::minmaxheap(std::string input_file) {
     }
     infile.close();
 
-	for (int i = num_nodes; i >= 0; i--) {
+	for (int i = num_nodes-1; i >= 0; i--) {
 		heapify(i);
 	}
 }
@@ -89,33 +89,6 @@ void minmaxheap::delete_max() {
 	remove(std::max(heap[1], heap[2]));
 }
 
-// void minmaxheap::level_order() {
-// 	int prev_rightmost = 0;
-// 	int rightmost = 0;
-// 	for(int i = 0; i < num_nodes; i++) {
-// 		std::cout << heap[i] << " ";
-// 		if (i%2 == 0){
-// 			if (i + prev_rightmost == rightmost) {
-// 				std::cout << std::endl;
-// 				if (rightmost > 0) {
-// 					std::cout << "right most currently = " << rightmost << std::endl;
-// 					prev_rightmost = rightmost;
-// 					rightmost = rightmost*2;
-// 					std::cout << "right most is now = " << rightmost << std::endl;
-// 				} else {
-// 					std::cout << "right most currently = " << rightmost << std::endl;
-// 					prev_rightmost = rightmost;
-// 					rightmost = 2;
-// 					std::cout << "right most is now = " << rightmost << std::endl;
-// 				}
-// 			} else {
-// 				std::cout << "- ";
-// 			}
-// 		}
-// 	}
-// 	std::cout << "\n";
-// }
-
 void minmaxheap::level_order(){
 	std::cout << heap[0];
 	int j = 1;
@@ -141,8 +114,9 @@ bool minmaxheap::search(int x) {
 }
 
 void minmaxheap::heapify(int loc) {
+	std::cout << "location: " << loc << " num_nodes: "<< num_nodes << " data: " << heap[loc] << std::endl;
 	int comp = 2*loc+1; // fill in with a default value
-	if (2*loc+1 > num_nodes)
+	if (2*loc+1 >= num_nodes)
 		return;
 
 	for(int i = 1; i <= 2; i++) {
@@ -177,6 +151,7 @@ void minmaxheap::heapify(int loc) {
 			heap[loc] = heap[comp];
 			heap[comp] = tmp;
 			heapify(loc);
+			heapify((comp-1)/2);
 			heapify(comp);
 		}
 	} else {
@@ -185,6 +160,7 @@ void minmaxheap::heapify(int loc) {
 			heap[loc] = heap[comp];
 			heap[comp] = tmp;
 			heapify(loc);
+			heapify((comp-1)/2);
 			heapify(comp);
 		}
 	}
