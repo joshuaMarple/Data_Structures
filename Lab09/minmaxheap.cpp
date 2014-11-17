@@ -66,6 +66,7 @@ void minmaxheap::remove(int x) {
 	for (int i = 0; i <= num_nodes; i++) {
 		if (heap[i] == x) {
 			if (i != num_nodes - 1) {
+				std::cout << "nope\n";
 				heap[i] = heap[num_nodes - 1];
 				heap[num_nodes-1] = INT_MAX;
 				num_nodes--;
@@ -90,7 +91,8 @@ void minmaxheap::delete_max() {
 }
 
 void minmaxheap::level_order(){
-	std::cout << heap[0];
+	if (num_nodes > 0)
+		std::cout << heap[0];
 	int j = 1;
 	int count = 1;
 	for(int i = 2; i <= num_nodes; i++){
