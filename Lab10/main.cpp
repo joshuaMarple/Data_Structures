@@ -37,7 +37,7 @@ int main(int argc, char* argv[]) {
 			std::cin >> input;
 			bq->Insert(input);
 		}else if(input == 2){	
-			// bq->deletemin();
+			bq->Deletemin();
 		}else if(input == 3){
 			bq->levelorder();
 		}

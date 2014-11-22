@@ -43,7 +43,7 @@ int BQ_node::order() {
 
 void BQ_node::levelorder() {
 	if (key != -1)
-		std::cout << key << " : " << order_val << ",";
+		std::cout << key << ",";
 	if (right != nullptr)
 		right->levelorder();
 	else 

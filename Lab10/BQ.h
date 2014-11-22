@@ -11,6 +11,7 @@
 #include <limits.h>
 
 #include "BQ_node.h"
+#include "Queue.h"
 
 #define arr_size 50
 
@@ -18,6 +19,8 @@ class BQ {
 
 	private:
 		BQ_node* root[arr_size];
+		Queue* child_queue = new Queue();
+		Queue* sibling_queue = new Queue();
 		BQ_node* Sub_merge(BQ_node* a, BQ_node* b);
 		
 	public:
