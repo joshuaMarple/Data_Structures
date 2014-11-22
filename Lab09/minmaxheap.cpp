@@ -23,7 +23,7 @@ minmaxheap::minmaxheap(std::string input_file) {
     }
     infile.close();
 
-	for (int i = (num_nodes-1)/2; i >= 0; i--) {
+	for (int i = num_nodes-1; i >= 0; i--) {
 		heapify(i);
 	}
 }
@@ -37,22 +37,14 @@ bool minmaxheap::isminlevel(int location) {
 }
 
 void minmaxheap::insert(int x) {
-	// std::cout << x << std::endl;
 	heap[num_nodes] = x;
 	num_nodes++;
 	for (int i = (num_nodes-1)/2; i >= 0; i--) {
 		heapify(i);
 	}
-
-	// int parent = (num_nodes-1)/2;
-	// int grandparent = (((num_nodes-1)/2)-1)/2;
-	// insert_helper(x, parent, num_nodes);
-	// heapify(int(trunc(log2(parent))));
-	// heapify(int(trunc(log2(num_nodes))));
 }
 
 bool minmaxheap::insert_helper(int x, int parent, int cur_loc) {
-	// grandparent = 
 	if (isminlevel(cur_loc)) {
 		if (x < heap[parent]) {
 			heap[cur_loc] = heap[parent];
@@ -97,25 +89,20 @@ void minmaxheap::delete_max() {
 	remove(std::max(heap[1], heap[2]));
 }
 
-void minmaxheap::level_order() {
-	int rightmost = 0;
-	for(int i = 0; i < num_nodes; i++) {
-		std::cout << heap[i] << " ";
-		if (i%2 == 0){
-			if (i == rightmost) {
-				std::cout << std::endl;
-				if (rightmost > 0) {
-					rightmost = rightmost*rightmost+rightmost; // Square the value, add
-															   // it to current location.
-				} else {
-					rightmost = 2;
-				}
-			} else {
-				std::cout << "- ";
-			}
+void minmaxheap::level_order(){
+	std::cout << heap[0];
+	int j = 1;
+	int count = 1;
+	for(int i = 2; i <= num_nodes; i++){
+		if(count == j){
+			std::cout << "\n" << heap[i-1] << " ";
+			j = j*2;
+			count = 1;
+		}else{
+			count++;
+			std::cout << heap[i-1] << " ";
 		}
 	}
-	std::cout << "\n";
 }
 
 bool minmaxheap::search(int x) {
@@ -127,6 +114,7 @@ bool minmaxheap::search(int x) {
 }
 
 void minmaxheap::heapify(int loc) {
+	std::cout << "location: " << loc << " num_nodes: "<< num_nodes << " data: " << heap[loc] << std::endl;
 	int comp = 2*loc+1; // fill in with a default value
 	if (2*loc+1 >= num_nodes)
 		return;
@@ -163,6 +151,7 @@ void minmaxheap::heapify(int loc) {
 			heap[loc] = heap[comp];
 			heap[comp] = tmp;
 			heapify(loc);
+			heapify((comp-1)/2);
 			heapify(comp);
 		}
 	} else {
@@ -171,6 +160,7 @@ void minmaxheap::heapify(int loc) {
 			heap[loc] = heap[comp];
 			heap[comp] = tmp;
 			heapify(loc);
+			heapify((comp-1)/2);
 			heapify(comp);
 		}
 	}
