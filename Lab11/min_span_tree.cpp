@@ -83,7 +83,7 @@ void min_span_tree::kruskal() {
 		pq.pop();
 	}
 	for(int i = 0; i < length-1; i++) {
-		std::cout << "(" << mst[i].a << " , " << mst[i].b << " , " << mst[i].cost << ")\n"; 
+		std::cout << "(" << mst[i].a << " , " << mst[i].b << ")\n"; 
 	}
 
 }
